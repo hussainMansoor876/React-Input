@@ -21,11 +21,13 @@ class App extends Component {
 
   submit() {
     let { list, numOfLinks } = this.state
+    let obj1 = Object.assign({}, this.state.obj);
     for (var i = 0; i < numOfLinks; i++) {
       list[i] = i
+      obj1[`label${i + 1}`] = ''
     }
-    console.log(list)
-    this.setState({ createLink: true })
+    console.log(obj1)
+    this.setState({ createLink: true, obj: obj1 })
   }
 
   changeObject(e) {
@@ -50,7 +52,7 @@ class App extends Component {
               {list.map((v, i) => {
                 return <div className="form-group form-inline" key={i}>
                   <label>Label {i + 1}&nbsp;&nbsp;&nbsp;</label>
-                  <input style={{ width: '70%' }} value={obj[`label${i + 1}`] ? obj[`label${i + 1}`] : ''} name={`label${i + 1}`} onChange={(e) => this.changeObject(e.target)} className="form-control" />
+                  <input style={{ width: '70%' }} value={obj[`label${i + 1}`]} name={`label${i + 1}`} onChange={(e) => this.changeObject(e.target)} className="form-control" />
                 </div>
               })}
             </form>}
